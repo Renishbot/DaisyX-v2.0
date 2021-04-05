@@ -129,7 +129,7 @@ async def delrss(client, message):
     await pablo.edit("Successfully Deleted All RSS From The Chat")
 
 
-async def check_rss(client,message):
+async def check_rss():
     if not overall_check():
         return
     all = get_all()
@@ -147,7 +147,7 @@ async def check_rss(client,message):
             except:
                 pass
             update_rss(message, link, rss_d.entries[0].link)
-            await client.send_message(message, content)
+            await pbot.send_message(message, content)
 
 
 scheduler = AsyncIOScheduler()
