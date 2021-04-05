@@ -45,7 +45,7 @@ def extract_emojis(s):
 daisy_chats = []
 en_chats = []
 # AI Chat (C) 2020-2021 by @InukaAsith
-
+"""
 @daisyx.on_message(
     filters.voice & filters.reply & ~filters.bot & ~filters.via_bot & ~filters.forwarded,
     group=2,
@@ -75,6 +75,7 @@ async def hmm(client, message):
         r = response.json()
         print(r)
         await client.send_message(message, r)
+"""
 
 @daisyx.on_message(filters.command("chatbot") & ~filters.edited & ~filters.bot)
 @admins_only
