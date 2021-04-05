@@ -65,16 +65,24 @@ async def is_nsfw(event):
         except:
             return False
     img = starkstark
-    f = {"file": (img, open(img, "rb"))}
-
-    r = requests.post("https://starkapi.herokuapp.com/nsfw/", files=f).json()
-    if r.get("success") is False:
-        is_nsfw = False
-    elif r.get("is_nsfw") is True:
+    #f = {"file": (img, open(img, "rb"))}
+    if nude.is_nude(img):
         is_nsfw = True
-    elif r.get("is_nsfw") is False:
+        return is_nsfw
+        os.remove(img)
+    else:
         is_nsfw = False
-    return is_nsfw
+        return is_nsfw
+        os.remove(img)
+
+    #r = requests.post("https://starkapi.herokuapp.com/nsfw/", files=f).json()
+    #if r.get("success") is False:
+   #     is_nsfw = False
+   # elif r.get("is_nsfw") is True:
+   #     is_nsfw = True
+   # elif r.get("is_nsfw") is False:
+   #     is_nsfw = False
+   # return is_nsfw
 
 
 @tbot.on(events.NewMessage(pattern="/nsfwguardian (.*)"))
@@ -129,25 +137,15 @@ async def ws(event):
         return
     if not is_nsfwatch_indb(str(event.chat_id)):
         return
-    if not (event.photo):
+    if event.text:
         return
     if not await is_admin(event, BOT_ID):
         return
     if await is_admin(event, event.message.sender_id):
         return
     sender = await event.get_sender()
-    await event.client.download_media(event.photo, "nudes.jpg")
-    img = "./nudes.jpg"
-    f = {"file": (img, open(img, "rb"))}
-    r = requests.post("https://starkapi.herokuapp.com/nsfw/", files=f).json()
-    if r.get("success") is False:
-        is_nsfw = False
-    elif r.get("is_nsfw") is True:
-        is_nsfw = True
-    elif r.get("is_nsfw") is False:
-        is_nsfw = False
-    return is_nsfw
-    if is_nsfw == True:
+    hmmstark = await is_nsfw(event)
+    if hmmstark is True:
         await event.delete()
         st = sender.first_name
         hh = sender.id
@@ -155,7 +153,7 @@ async def ws(event):
         dev = await event.respond(final)
         await asyncio.sleep(30)
         await dev.delete()
-        os.remove("nudes.jpg")
+        #os.remove("nudes.jpg")
 
 
 """
