@@ -125,7 +125,9 @@ async def add_handler(message, chat, strings):
     # filters doesn't support anon admins
     if message.from_user.id == 1087968824:
         return await message.reply(strings["anon_detected"])
-
+    if not await check_admin_rights(message, chat_id, message.from_user.id, ["can_change_info"]):
+        return await message.reply("You can't change info of this group")
+        
     handler = get_args_str(message)
 
     if handler.startswith("re:"):
