@@ -277,7 +277,7 @@ async def list_filters(message, chat, strings):
     await message.reply(text + filters_text)
 
 
-@register(cmds="delfilter", is_admin=True)
+@register(cmds="delfilter", is_admin=True, user_can_change_info = True)
 @need_args_dec()
 @chat_connection(only_groups=True, admin=True)
 @get_strings_dec("filters")
