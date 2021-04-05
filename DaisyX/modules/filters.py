@@ -39,7 +39,7 @@ from DaisyX.utils.logger import log
 from .utils.connections import chat_connection, get_connected_chat
 from .utils.language import get_string, get_strings_dec
 from .utils.message import get_args_str, need_args_dec
-from .utils.user_details import is_chat_creator, is_user_admin
+from .utils.user_details import is_chat_creator, is_user_admin, get_admins_rights
 
 filter_action_cp = CallbackData("filter_action_cp", "filter_id")
 filter_remove_cp = CallbackData("filter_remove_cp", "id")
