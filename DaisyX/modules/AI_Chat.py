@@ -63,7 +63,7 @@ async def hmm(client, message):
         )
     else:
         headers = {
-            "Content-Type": previous_message.mime_type,
+            "Content-Type": previous_message.voice.mime_type,
         }
         data = open(required_file_name, "rb").read()
         response = requests.post(
