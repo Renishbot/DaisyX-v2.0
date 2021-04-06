@@ -58,6 +58,8 @@ async def hmm(_, message):
     filters.incoming & filters.text & ~filters.private & ~filters.channel & ~filters.bot
 )
 async def hi(client, message):
+    if not get_session(int(message.chat.id)):
+        message.continue_propagation()
     if not len(await member_permissions(message.chat.id, message.from_user.id)) < 1:
         message.continue_propagation()
     if len(await member_permissions(message.chat.id, BOT_ID)) < 1:
@@ -68,8 +70,7 @@ async def hi(client, message):
         )
         await asyncio.sleep(10)
         await sedlyf.delete()
-    if not get_session(int(message.chat.id)):
-        message.continue_propagation()
+
     lel = get_url(message)
     if lel:
         try:
@@ -91,6 +92,6 @@ __mod_name__ = "URL Block"
 __help__ = """
 <b> Block links sent by users in your group </b>
 
-- /lockurl [on/off]: Enable/Disable URL Lock
+- /urllock [on/off]: Enable/Disable URL Lock
 
 """
