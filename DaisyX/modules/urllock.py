@@ -57,6 +57,8 @@ async def hi(client,message):
     sedlyf = await message.reply_text("**I don't have enough permissions to delete messages here**")
     await asyncio.sleep(10)                         
     await sedlyf.delete()
+  if not get_session(int(message.chat.id)):
+    message.continue_propagation()
   lel = get_url(message)
   if lel:
     try:
