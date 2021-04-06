@@ -1,4 +1,4 @@
-# This file is part of Daisy (Telegram Bot)
+# This file is part of Utah (Telegram Bot)
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -17,21 +17,21 @@ import sys
 
 import redis as redis_lib
 
-from DaisyX import log
-from DaisyX.config import get_str_key
+from utah import log
+from utah.config import get_str_key, get_int_key
 
 # Init Redis
-redis = redis_lib.StrictRedis(
+redis = redis_lib.Redis(
     host=get_str_key("REDIS_URI"),
     port=get_str_key("REDIS_PORT"),
-    db=get_int_key("REDIS_PASS"),
+    password=get_str_key("REDIS_PASS"),
     decode_responses=True
 )
 
-bredis = redis_lib.StrictRedis(
+bredis = redis_lib.Redis(
     host=get_str_key("REDIS_URI"),
     port=get_str_key("REDIS_PORT"),
-    db=get_int_key("REDIS_PASS")
+    password=get_str_key("REDIS_PASS"),
 )
 
 try:
