@@ -16,7 +16,7 @@
 
 import threading
 from sqlalchemy import Column, String, UnicodeText
-from DaisyX.modules.sql import BASE, SESSION
+from DaisyX.services.sql import BASE, SESSION
 
 
 class URLBlackListFilters(BASE):
