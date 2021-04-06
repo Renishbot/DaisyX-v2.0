@@ -5,6 +5,8 @@ import time
 import urllib
 import os
 
+from telethon import events, types
+
 from DaisyX.services.telethon import tbot as client
 from DaisyX.services.events import register
 
