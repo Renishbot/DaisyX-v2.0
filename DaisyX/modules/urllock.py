@@ -2,7 +2,7 @@ from pyrogram import filters
 import asyncio
 import os
 from DaisyX import BOT_ID
-from DaisyX.db.mongo_helpers.lockurl import add_chat, get_session, remove_chat
+from DaisyX.db.mongo_helpers.lockurl import add_chat_i, get_session_i, remove_chat_i
 from DaisyX.function.pluginhelpers import admins_only, edit_or_reply,member_permissions,get_url
 from DaisyX.services.pyrogram import pbot
 
@@ -22,7 +22,7 @@ async def hmm(_, message):
     chat_id = message.chat.id
     if status == "ON" or status == "on" or status == "On":
         lel = await edit_or_reply(message, "`Processing...`")
-        lol = add_chat(int(message.chat.id))
+        lol = add_chat_i(int(message.chat.id))
         if not lol:
             await lel.edit("URL Block Already Activated In This Chat")
             return
@@ -32,7 +32,7 @@ async def hmm(_, message):
 
     elif status == "OFF" or status == "off" or status == "Off":
         lel = await edit_or_reply(message, "`Processing...`")
-        Escobar = remove_chat(int(message.chat.id))
+        Escobar = remove_chat_i(int(message.chat.id))
         if not Escobar:
             await lel.edit("URL Block Was Not Activated In This Chat")
             return
@@ -49,7 +49,7 @@ async def hmm(_, message):
 
 @pbot.on_message(filters.incoming & filters.text & ~filters.private & ~filters.channel & ~filters.bot)
 async def hi(client,message):
-  if not get_session(int(message.chat.id)):
+  if not get_session_i(int(message.chat.id)):
     message.continue_propagation()
   elif not len(await member_permissions(message.chat.id, message.from_user.id)) < 1:
     message.continue_propagation()
