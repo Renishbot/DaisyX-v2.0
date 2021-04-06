@@ -1,4 +1,4 @@
-# This file is part of DaisyXBot (Telegram Bot)
+# This file is part of Daisy (Telegram Bot)
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -17,21 +17,21 @@ import sys
 
 import redis as redis_lib
 
-from DaisyX import log
-from DaisyX.config import get_str_key
+from hitsuki import log
+from hitsuki.config import get_str_key, get_int_key
 
 # Init Redis
-redis = redis_lib.Redis(
+redis = redis_lib.StrictRedis(
     host=get_str_key("REDIS_URI"),
     port=get_str_key("REDIS_PORT"),
-    password=get_str_key("REDIS_PASS"),
-    decode_responses=True,
+    db=get_int_key("REDIS_PASS"),
+    decode_responses=True
 )
 
-bredis = redis_lib.Redis(
+bredis = redis_lib.StrictRedis(
     host=get_str_key("REDIS_URI"),
     port=get_str_key("REDIS_PORT"),
-    password=get_str_key("REDIS_PASS"),
+    db=get_int_key("REDIS_PASS")
 )
 
 try:
