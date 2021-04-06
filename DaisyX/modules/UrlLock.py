@@ -70,7 +70,7 @@ async def hi(client,message):
   else:
     message.continue_propagation()
 
-__mod_name__ = "Link Block"
+__mod_name__ = "URL Block"
 __help__ = """
 <b> Block links sent by users in your group </b>
 
