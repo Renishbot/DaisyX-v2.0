@@ -17,8 +17,8 @@ import sys
 
 import redis as redis_lib
 
-from utah import log
-from utah.config import get_str_key, get_int_key
+from DaisyX import log
+from DaisyX.config import get_str_key, get_int_key
 
 # Init Redis
 redis = redis_lib.Redis(
