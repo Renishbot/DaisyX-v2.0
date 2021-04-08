@@ -61,7 +61,12 @@ async def is_nsfw(event):
             return False
     elif lmao.photo or lmao.sticker:
         try:
-            starkstark = await event.client.download_media(lmao.media, thumb=-1)
+            starkstark =  await event.client.download_media(lmao.photo)
+        except:
+            return False
+    elif lmao.sticker:
+        try:
+            starkstark =  await event.client.download_media(lmao.sticker)
         except:
             return False
     img = starkstark
