@@ -1,5 +1,5 @@
 import os
-
+from telethon import events
 from DaisyX.services.events import register
 from DaisyX.services.telethon import tbot
 
